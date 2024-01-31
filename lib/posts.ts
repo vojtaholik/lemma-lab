@@ -2,7 +2,7 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import { compileMDX } from 'next-mdx-remote/rsc'
-import { useMDXComponents } from '@/mdx-components'
+import { getMDXComponents } from '@/mdx-components'
 import { notFound } from 'next/navigation'
 import { extractImagesFromMDX } from '@/utils/extract-images-from-mdx'
 
@@ -11,8 +11,8 @@ export async function getPostById(id: string) {
   const fullPath = join('_posts', `${realId}.mdx`)
   const fileContent = await fs.promises.readFile(fullPath, 'utf8')
   const images = extractImagesFromMDX(fileContent)
-  const mdxComponents = useMDXComponents({}, { images })
-  console.log({ images })
+  const mdxComponents = getMDXComponents({}, { images })
+
   try {
     const { content, frontmatter } = await compileMDX<{
       title: string

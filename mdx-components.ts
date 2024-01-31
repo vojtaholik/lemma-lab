@@ -18,13 +18,12 @@ import { YouTube } from '@/app/posts/components/youtube'
 import { Ref, FootNotes, FootNote } from '@/app/posts/components/footnotes'
 import { Blockquote as blockquote } from '@/app/posts/components/blockquote'
 
-export function useMDXComponents(
+export function getMDXComponents(
   components: {
     [component: string]: React.ComponentType
   },
   context: { images: string[] }
 ) {
-  console.log({ context })
   return {
     ...components,
     a,
